@@ -9,4 +9,5 @@ def decodeTransaction(transaction):
     out["versionNr"] = swapEndian(transaction[0:4*2])
     out["inputCount"] = decodeVarInt(transaction,4)
 
+
     return out
