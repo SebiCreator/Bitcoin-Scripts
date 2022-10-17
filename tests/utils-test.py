@@ -12,11 +12,43 @@ from src import *
 
 
 
-
+# Hex String to Int
 handleAssessment(
     func=hexstrToInt,
     input="0102030405",
     output=0x0102030405
+)
+
+handleAssessment(
+    func=hexstrToInt,
+    input="0000000",
+    output=0x0
+)
+
+handleAssessment(
+    func=hexstrToInt,
+    input="fffffff",
+    output=0xfffffff
+)
+
+# If Hex Integer than to String else return input
+
+handleAssessment(
+    func=ifHexintToStr,
+    input="01020304",
+    output="01020304"
+)
+
+handleAssessment(
+    func=ifHexintToStr,
+    input=0x12345,
+    output="12345"
+)
+
+handleAssessment(
+    func=ifHexintToStr,
+    input=0x00012345,
+    output="12345"
 )
 
 

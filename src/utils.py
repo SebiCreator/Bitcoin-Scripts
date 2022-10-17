@@ -1,5 +1,21 @@
 from datetime import datetime
 
+# Converts a hexnumber in string format to an normal integer
+def hexstrToInt(hexstr: str):
+    return int("0x%s" % hexstr,base=16)
+
+
+# Converts integer in hex format to string in hex format
+def ifHexintToStr(hexInput):
+    if type(hexInput) == str:
+        return hexInput
+    elif type(hexInput) == int:
+        return str(hex(hexInput))[2:]
+    else:
+        print("Unknown Format: %s\n" % type(hexInput))
+        exit(1)
+
+
 # stream is a byte stream in hex or string format
 def decodeVarInt(stream):
     print(stream)
@@ -31,19 +47,7 @@ def swapEndian(stream):
     out.reverse()
     return ''.join(out)
 
-# Converts a hexnumber in string format to an normal integer
-def hexstrToInt(hexstr: str):
-    return int("0x%s" % hexstr,base=16)
 
-# Converts integer in hex format to string in hex format
-def ifHexintToStr(hexInput):
-    if type(hexInput) == str:
-        return hexInput
-    elif type(hexInput) == int:
-        return str(hex(hexInput))[2:0]
-    else:
-        print("Unknown Format: %s\n" % type(hexInput))
-        exit(1)
 
 # decodes Bitcoin locktime Field
 def decodeLocktime(locktime):
