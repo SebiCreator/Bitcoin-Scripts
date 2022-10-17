@@ -11,29 +11,31 @@ sys.path.insert(0, parentdir)
 from src import *
 
 
+
+
 handleAssessment(
-    real=hexstrToInt("0102030405"),
-    should=0x0102030405,
-    name="hexstrToInt"
+    func=hexstrToInt,
+    input="0102030405",
+    output=0x0102030405
 )
 
 
 
 # Swap Endian
 handleAssessment(
-    real=swapEndian("0102030405"),
-    should="0504030201",
-    name="swapEndian"
+    func=swapEndian,
+    input="0102030405",
+    output="0504030201"
 )
 
 handleAssessment(
-    real=swapEndian("102030405"),
-    should=-1,
-    name="swapEndian"
+    func=swapEndian,
+    input="102030405",
+    output=-1
 )
 
 #handleAssessment(
-    #real=swapEndian(0x0102030405),
-    #should="0504030201",
-    #name="swapEndian"
+    #func=swapEndian,
+    #input=0x0102030405,
+    #output="0504030201"
 #)

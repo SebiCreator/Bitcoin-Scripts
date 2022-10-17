@@ -29,13 +29,16 @@ def printSucess(category: str, msg: str):
           category + bcolors.G_TEXT + msg + bcolors.ENDC)
 
 
-def handleAssessment(real,should,name):
+
+def handleAssessment(func,input,output):
+        func_name = func.__name__
+        res = func(input)
         try:
-            if real == should: 
-                printSucess(name,"TEST PASSED!")
+            if res == output:
+                printSucess(func_name,"TEST PASSED!")
             else:
-                printError(name,"TEST FAILED!")
-                printWarning("DIFF", "is: %s\tshould: %s" % (real,should))
+                printError(func_name,"TEST FAILED!")
+                printWarning("DIFF", "is: %s\tshould: %s" % (res,output))
         except Exception as e:
-            printError(name, "EXCPETION OCCURED")
+            printError(func_name, "EXCPETION OCCURED")
             printWarning("EXCEPTION",e)
