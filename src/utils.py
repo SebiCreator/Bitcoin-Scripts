@@ -2,9 +2,9 @@ from datetime import datetime
 
 # stream is a byte stream in hex or string format
 def decodeVarInt(stream):
+    print(stream)
     if type(stream) == int:
         data = hex(stream)[2:]
-
     data = ifHexintToStr(stream)
     print(data)
     head = int("0x"+data[:2],base=16)
@@ -23,6 +23,8 @@ def decodeVarInt(stream):
 def swapEndian(stream):
     out = []
     stream = ifHexintToStr(stream)
+    if not not len(stream) % 2:
+        return -1 
     for i in range(0,len(stream),2):
         tmp = "%s%s" % (stream[i],stream[i+1])
         out.append(tmp)
