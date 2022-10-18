@@ -43,7 +43,33 @@ def decodeTransaction(transaction):
 
 
         # SEQUENCE-NUM
-        out["vin"][idx]["sequence"] = hexstrToInt(transaction[pointer:pointer+(4*2)])
+        out["vin"][idx]["sequence"] = hexstrToInt(transaction[pointer:pointer+(4*2)]) # 4 Byte
+        pointer += 4*2
+
+    
+    # Output Counter
+    value,byteOffset = decodeVarInt(transaction[pointer:])
+    out["outputCount"] = hexstrToInt(value)
+    pointer += byteOffset * 2
+
+    out["vout"] = []
+    # VOUT - LOOP
+    for idx in range(0,out["outputCount"]):
+        # Bitcoin Amount
+        out["vout"].append({})
+        out["vout"][idx]["value"] = hexstrToInt(swapEndian(transaction[pointer:pointer+(8*2)])) / 10e7 # 8 byte
+        pointer += 8*2
+
+
+
+    # TODO: !!!!
+        value,byteOffset = decodeVarInt(transaction[pointer:])
+        lockScriptSize = hexstrToInt(value)
+        pointer += byteOffset
+        out["vout"][idx]["scriptPubKey"] = transaction[pointer:pointer+(lockScriptSize*2)]
+        pointer += lockScriptSize*2
+    
+
 
     
         
