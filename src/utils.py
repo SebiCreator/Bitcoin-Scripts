@@ -13,25 +13,7 @@ def ifHexintToStr(hexInput):
         return str(hex(hexInput))[2:]
     else:
         print("Unknown Format: %s\n" % type(hexInput))
-        exit(1)
-
-
-# stream is a byte stream in hex or string format
-def decodeVarInt(stream):
-    print(stream)
-    if type(stream) == int:
-        data = hex(stream)[2:]
-    data = ifHexintToStr(stream)
-    print(data)
-    head = int("0x"+data[:2],base=16)
-    if head < 0xfd:
-        return data[:2]
-    elif head == 0xfd:
-        return data[2:6]
-    elif head == 0xfe:
-        return data[2:10]
-    elif head == 0xff:
-        return data[2:18]
+        return -1
 
 
 # stream is a byte stream in hex or string format
@@ -46,6 +28,25 @@ def swapEndian(stream):
         out.append(tmp)
     out.reverse()
     return ''.join(out)
+
+
+# stream is a byte stream in hex or string format
+# returns 2-Tuple (Value of VarInt,Bytes)
+def decodeVarInt(stream):
+    if type(stream) == int:
+        data = hex(stream)[2:]
+    data = ifHexintToStr(stream)
+    head = int("0x"+data[:2],base=16)
+    if head < 0xfd:
+        return (data[:2],1)
+    elif head == 0xfd:
+        return (data[2:6],2)
+    elif head == 0xfe:
+        return (data[2:10],4)
+    elif head == 0xff:
+        return (data[2:18],8)
+
+
 
 
 

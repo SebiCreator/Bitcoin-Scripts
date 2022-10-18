@@ -66,8 +66,8 @@ handleAssessment(
     output=-1
 )
 
-#handleAssessment(
-    #func=swapEndian,
-    #input=0x0102030405,
-    #output="0504030201"
-#)
+handleAssessment(
+    func=swapEndian,
+    input=0x0102030405,
+    output=-1
+)
