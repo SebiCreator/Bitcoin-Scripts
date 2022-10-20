@@ -72,7 +72,4 @@ def decodeTransaction(transaction):
     out['locktime'] = decodeLocktime(transaction[pointer:])
     
         
-    pretty = json.dumps(out,indent=4)
-         
-    print(pretty)
-
+    return out

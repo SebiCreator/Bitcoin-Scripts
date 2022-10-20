@@ -38,7 +38,7 @@ def handleAssessment(func,input,output):
                 printSucess(func_name,"TEST PASSED!")
             else:
                 printError(func_name,"TEST FAILED!")
-                printWarning("DIFF", "is: %s\tshould: %s" % (res,output))
+                printWarning("DIFF", "is: %s\nshould: %s" % (res,output))
         except Exception as e:
             printError(func_name, "EXCPETION OCCURED")
             printWarning("EXCEPTION",e)

@@ -56,12 +56,12 @@ def decodeLocktime(locktime):
         locktime =  hexstrToInt(locktime)
     
     if locktime == 0:
-        return ('NoLock',-1)
+        return ['NoLock',-1]
     elif locktime < (5 * 10e7):
-        return ('Blockheight',locktime)
+        return ['Blockheight',locktime]
     else:
         formated = datetime.utcfromtimestamp(locktime).strftime('%Y-%m-%d %H:%M:%s')
-        return ('Blocktime',formated)
+        return ['Blocktime',formated]
 
 def btcToSat(btc):
    return btc * 10e7 

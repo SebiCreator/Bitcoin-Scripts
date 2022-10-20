@@ -1,4 +1,3 @@
-from black import out
 from testmanager import *
 import os
 import sys
@@ -100,20 +99,20 @@ handleAssessment(
 handleAssessment(
     func=decodeLocktime,
     input=0x0000,
-    output=('NoLock',-1)
+    output=['NoLock',-1]
 )
 
 handleAssessment(
     func=decodeLocktime,
     input=251019,
-    output=('Blockheight',251019)
+    output=['Blockheight',251019]
 )
 
 
 handleAssessment(
     func=decodeLocktime,
     input=1666277491,
-    output=('Blocktime',"2022-10-20 14:51:1666270291")
+    output=['Blocktime',"2022-10-20 14:51:1666270291"]
 )
 
 
