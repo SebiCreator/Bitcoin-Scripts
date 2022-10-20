@@ -1,5 +1,6 @@
+from re import I
 from .utils import *
-import pprint
+import json
 
 
 def decodeTransaction(transaction):
@@ -37,7 +38,6 @@ def decodeTransaction(transaction):
         scriptSigSize,byteOffset = decodeVarInt(transaction[pointer:])
         pointer += byteOffset * 2
         scriptSigSize = hexstrToInt(scriptSigSize)
-        print(scriptSigSize)
         out["vin"][idx]["ScriptSig"] = transaction[pointer:pointer+(scriptSigSize*2)]
         pointer += scriptSigSize*2
 
@@ -62,18 +62,17 @@ def decodeTransaction(transaction):
 
 
 
-    # TODO: !!!!
         value,byteOffset = decodeVarInt(transaction[pointer:])
         lockScriptSize = hexstrToInt(value)
-        pointer += byteOffset
+        pointer += byteOffset * 2
         out["vout"][idx]["scriptPubKey"] = transaction[pointer:pointer+(lockScriptSize*2)]
         pointer += lockScriptSize*2
     
 
-
+    out['locktime'] = decodeLocktime(transaction[pointer:])
     
         
-
+    pretty = json.dumps(out,indent=4)
          
-    pprint.pprint(out)
+    print(pretty)
 

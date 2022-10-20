@@ -63,4 +63,8 @@ def decodeLocktime(locktime):
         formated = datetime.utcfromtimestamp(locktime).strftime('%Y-%m-%d %H:%M:%s')
         return ('Blocktime',formated)
 
+def btcToSat(btc):
+   return btc * 10e7 
 
+def SatToBtc(sat):
+    return sat *10e-9
