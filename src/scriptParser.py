@@ -27,11 +27,23 @@ def parseScript(hexscript):
            asm.append("OP_DUP") 
            asm.append("OP_HASH160")
            pubKeyHash = hexscript[6:-4]
-           asm.append(getBtcAddr(pubKeyHash=pubKeyHash))
+           asm.append(pubKeyHash)
            asm.append("OP_EQUALVERIFY")
            asm.append("OP_CHECKSIG")
+        
+        else:
+            mode = "unknown"
 
+
+        asm = " ".join(asm)
         return {"mode": mode,
                 "asm" : asm,
                 "hex" : hexscript}
 
+
+def P2pkhAddr(p2pkh_asm):
+    p2pkh_asm = p2pkh_asm.split(" ")
+    pubKeyHash = p2pkh_asm[2]
+    addr= getBtcAddr(pubKeyHash)
+    return addr
+    

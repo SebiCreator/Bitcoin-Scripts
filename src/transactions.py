@@ -1,5 +1,6 @@
 from re import I
 from .utils import *
+from .scriptParser import *
 import json
 
 
@@ -65,7 +66,9 @@ def decodeTransaction(transaction):
         value,byteOffset = decodeVarInt(transaction[pointer:])
         lockScriptSize = hexstrToInt(value)
         pointer += byteOffset * 2
-        out["vout"][idx]["scriptPubKey"] = transaction[pointer:pointer+(lockScriptSize*2)]
+        scriptPubKey = parseScript(transaction[pointer:pointer+(lockScriptSize*2)])
+        out["vout"][idx]["scriptPubKey"] = scriptPubKey
+        out["vout"][idx]["address"] = P2pkhAddr(scriptPubKey["asm"])
         pointer += lockScriptSize*2
     
 

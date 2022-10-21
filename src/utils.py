@@ -1,5 +1,6 @@
 from datetime import datetime
 import time
+import json
 
 # Converts a hexnumber in string format to an normal integer
 def hexstrToInt(hexstr: str):
@@ -73,3 +74,6 @@ def SatToBtc(sat):
     
 def getUnixTime():
    return time.time() 
+
+def printDictNice(dict):
+   print(json.dumps(dict,indent=4,sort_keys=True)) 

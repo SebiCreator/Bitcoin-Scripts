@@ -75,13 +75,14 @@ def getBtcAddr(pubKeyHash):
 
 # Checks if Bitcoin Address is valid or not 
 def checkValidAddr(addr):
-    addr = base58.b58decode(addr).decode('utf-8')
+    addr = base58.b58decode(addr)
+    addr = str(hex(int.from_bytes(addr,'big')))
     # Extract Data sperately
     data = addr[:-8]
     checksum_should = addr[-8:]
     # CreateChecksum of data
     sha = hashlib.sha256()
-    hex_ = bytearray.fromhex(data.decode('utf-8'))
+    hex_ = bytearray.fromhex(data[2:])
     sha.update(hex_)
     sha2 = hashlib.sha256()
     sha2.update(sha.digest())
